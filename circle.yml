@@ -1,12 +1,16 @@
-machine:
-    timezone:
-        Asia/Tokyo
-dependencies:
-    override:
-        - mkdir -p ~/.go_project/src/github.com/${CIRCLE_PROJECT_USERNAME}
-        - ln -s ${HOME}/${CIRCLE_PROJECT_REPONAME} ${HOME}/.go_project/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}
-        - go version
-
-test:
-    override:
-        - time go run main.go > result.txt
+version: 2
+jobs:
+    build:
+        docker:
+            - image: golang:1.7.4
+        working_directory: /go/src/github.com/ieee0824/circleci-bench
+    steps:
+        - checkout
+        - run:
+            name: check go version
+            command: |
+                go version
+        - run:
+            name: start bench 
+            command: |
+                go run main.go > result.txt
