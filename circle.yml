@@ -13,4 +13,4 @@ jobs:
             - run:
                 name: start bench 
                 command: |
-                    go run main.go > result.txt
+                    time sh -c "go run main.go > result.txt"
