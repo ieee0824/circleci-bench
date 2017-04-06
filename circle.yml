@@ -9,4 +9,4 @@ dependencies:
 
 test:
     override:
-        - time go run main.go > result.txt
+        - sh -c "time go run main.go > result.txt"
