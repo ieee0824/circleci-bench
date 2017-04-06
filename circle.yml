@@ -4,13 +4,13 @@ jobs:
         docker:
             - image: golang:1.7.4
         working_directory: /go/src/github.com/ieee0824/circleci-bench
-    steps:
-        - checkout
-        - run:
-            name: check go version
-            command: |
-                go version
-        - run:
-            name: start bench 
-            command: |
-                go run main.go > result.txt
+        steps:
+            - checkout
+            - run:
+                name: check go version
+                command: |
+                    go version
+            - run:
+                name: start bench 
+                command: |
+                    go run main.go > result.txt
