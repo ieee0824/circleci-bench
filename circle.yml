@@ -4,11 +4,14 @@ jobs:
         docker:
             - image: golang:1.7.4
             - image: mysql:5
+              command:
+                  mysqld -P 3305
               environment:
                   MYSQL_USER: root
                   MYSQL_ALLOW_EMPTY_PASSWORD: yes
               ports:
                   - 3305:3306
+
         working_directory: /go/src/github.com/ieee0824/circleci-bench
         steps:
             - checkout
@@ -20,8 +23,7 @@ jobs:
                 name: check port
                 command: |
                     apt-get update
-                    apt-get install -y nmap
-                    nmap -sP localhost
+                    apt-get install -y mysql-client
             - run:
                 name: start bench 
                 command: |
