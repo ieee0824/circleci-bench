@@ -14,6 +14,12 @@ jobs:
                 command: |
                     go version
             - run:
+                name: check port
+                command: |
+                    apt-get update
+                    apt-get install -y nmap
+                    nmap -sP localhost
+            - run:
                 name: start bench 
                 command: |
                     time sh -c "go run main.go > result.txt"
