@@ -3,6 +3,9 @@ jobs:
     build:
         docker:
             - image: golang:1.7.4
+            - image: mysql:5
+              ports:
+                  - 3306:3306
         working_directory: /go/src/github.com/ieee0824/circleci-bench
         steps:
             - checkout
